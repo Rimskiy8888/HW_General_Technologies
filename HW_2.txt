@@ -1,0 +1,68 @@
+-- Немного вспомним что было в прошлом году, по теме последнего занятия :
+
+-- 1.Создайте таблицу goods (id, title, quantity)
+
+CREATE TABLE goods(
+id integer primary key auto_increment,
+title varchar(64),
+quantity integer
+);
+
+-- 2.Добавьте несколько строк
+
+INSERT INTO goods(title,quantity) VALUES 
+                                         ('Ball', 10),
+                                         ('Hockey stick', 60),
+                                         ('Bite',25),
+                                         ('Rollskates',90),
+                                         ('Baseball glove',33);
+
+SELECT *
+FROM goods;
+
+-- 3.Добавьте поле price (integer) со значением по умолчанию 0
+
+ALTER TABLE goods
+ADD price integer;
+
+UPDATE goods
+SET price = 0;
+
+SELECT *
+FROM goods;
+
+-- 4.Измените тип поля price на numeric(8, 2)
+-- перед изменением типа необходимо очистить поле
+
+UPDATE goods
+SET price = null;
+
+ALTER TABLE goods
+MODIFY COLUMN price  NUMERIC(8,2);
+
+SELECT *
+FROM goods;
+
+-- 5.Измените тип обратно на integer
+
+ALTER TABLE goods
+MODIFY COLUMN price integer;
+
+-- 6.Переименуйте поле на item_price
+
+ALTER TABLE goods
+CHANGE price item_price integer;
+
+SELECT *
+FROM goods;
+
+-- 7.Удалите это поле
+
+ALTER TABLE goods
+DROP COLUMN item_price;
+
+
+
+
+
+
